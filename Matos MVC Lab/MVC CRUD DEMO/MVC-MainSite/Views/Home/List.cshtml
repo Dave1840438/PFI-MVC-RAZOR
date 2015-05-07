@@ -1,0 +1,50 @@
+﻿@model MVC_MainSite.Models.UsersModel
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Liste des usagers...</h2>
+
+
+@if (Model != null)
+{
+    Model.SelectAll();
+
+    <div class="ListStyle">
+         <table>
+            <tr>
+                <td>Nom d'usager</td>
+                <td>Mot de passe</td>
+                <td>Nom au complet</td>
+                <td>Courriel</td>
+                <td>Avatar</td>
+                <td colspan="2"></td>
+            </tr>
+            
+            @while (Model.Next())
+            {
+                <tr>
+                    <td>@Model.UserName</td>
+                    <td>@Model.Password</td>
+                    <td>@Model.FullName</td>
+                    <td>@Model.EMail</td>
+                    <td> <img src="~/@Model.GetAvatarURL()" class="avatar" /> </td>
+                    <td colspan="2">
+                        <a href="@Url.Action("Edit", "Home", new { id=Model.ID })">
+                            <abbr title='Éditer @Model.FullName'>
+                                <img src='@Url.Content("~/Images/Edit.png")' alt="Edit" class="CMD_Icon" />
+                            </abbr>
+                        </a>
+                        <a href="@Url.Action("Delete", "Home", new { id = Model.ID })">
+                            <abbr title='Effacer @Model.FullName'>
+                                <img src='@Url.Content("~/Images/Delete.png")' alt="Delete" class="CMD_Icon" />
+                            </abbr>
+                        </a>
+                    </td>
+               </tr>
+            }
+            @{Model.EndQuerySQL();}
+        </table>
+    </div>
+}
+

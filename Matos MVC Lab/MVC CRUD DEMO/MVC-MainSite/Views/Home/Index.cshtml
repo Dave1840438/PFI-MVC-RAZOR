@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Authentification</h2>
+@using (Html.BeginForm())
+{ 
+    @Html.Label("Nom d'usager") <br />
+    @Html.TextBox("UserName") <br />
+       
+    @Html.Label("Mot de passe")<br />
+    @Html.Password("Password")<br /> 
+    
+    <br />
+    <button type="submit">Connexion...</button>
+
+}

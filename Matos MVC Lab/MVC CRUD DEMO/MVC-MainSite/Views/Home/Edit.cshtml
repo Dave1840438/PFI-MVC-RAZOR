@@ -1,0 +1,38 @@
+﻿@model MVC_MainSite.Models.UsersModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm("Edit",
+                        "Home",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+{
+    @Html.Label("Nom d'usager") <br />
+    @Html.TextBox("UserName", Model.UserName); <br />
+
+
+    @Html.Label("Mot de passe")<br />
+    @Html.TextBox("Password", Model.Password)<br />
+
+
+    @Html.Label("Nom au complet")<br />
+    @Html.TextBox("FullName", Model.FullName)<br />
+
+
+    @Html.Label("Courriel")<br />
+    @Html.TextBox("EMail", Model.EMail)<br />
+    
+    <br />
+
+    <img id="new_img_avatar" src="~/@Model.GetAvatarURL()" class="bigAvatar" />
+    
+    <input type="file" name="FU_Avatar" id="FU_Avatar" style="display:none;" onchange="PreLoadImage();" />
+    
+    <input type="button" class="AvatarBrowseButton" id="uploadTrigger" onclick="document.getElementById('FU_Avatar').click();" value="Choisir..."/>
+
+    <br />
+    <br />
+    <button type="submit">Soumettre...</button>
+}

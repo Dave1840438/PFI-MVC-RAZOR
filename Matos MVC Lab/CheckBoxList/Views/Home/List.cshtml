@@ -1,0 +1,33 @@
+﻿@model List<CheckBoxList.Models.CheckBoxData>
+@{
+    ViewBag.Title = "List";
+
+    //http://mvccbl.com/Documentation
+    //http://www.c-sharpcorner.com/UploadFile/sourabh_mishra1/checkboxlist-in-Asp-Net-mvc/
+    //https://www.youtube.com/watch?v=4KeoOPWshmw
+    //http://codepaste.net/tuxzx2
+    //http://www.c-sharpcorner.com/UploadFile/4d9083/creating-simple-checkboxlist-in-mvc-4-using-razor/
+}
+
+<h2>List</h2>
+<script>
+    function CheckBoxOnChecked() {
+
+    }
+</script>
+
+@using (Html.BeginForm())
+{
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        <div>
+            @Html.CheckBoxFor(model => model[i].Checked)
+            
+            @Html.HiddenFor(model => model[i].Name)
+            @Html.Label(Model[i].Name)
+        </div>
+        <br />
+    }
+    <input type="submit" value="subtmit" />
+}
+
